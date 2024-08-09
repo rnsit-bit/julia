@@ -1,0 +1,59 @@
+4a) function gcd(a, b)
+    while b != 0
+        a, b = b, a % b
+    end
+    return a
+end
+
+function lcm(a, b)
+    return abs(a * b) ÷ gcd(a, b)
+end
+
+input = readline()
+a, b = parse.(Int, split(input))
+
+gcd_result = gcd(a, b)
+lcm_result = lcm(a, b)
+
+println("GCD of $a and $b is: $gcd_result")
+println("LCM of $a and $b is: $lcm_result")
+
+
+4b)function factorial_recursive(n)
+    if n == 0 || n == 1
+        return 1
+    else
+        return n * factorial_recursive(n - 1)
+    end
+end
+
+println("Enter a number to calculate its factorial: ")
+num = parse(Int, readline())
+
+if num < 0
+    println("Factorial is not defined for negative numbers.")
+else
+    result = factorial_recursive(num)
+    println("Factorial of $num is: ", result)
+end
+
+4c) function fibonacci_recursive(n)
+    if n == 0
+        return 0
+    elseif n == 1
+        return 1
+    else
+        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+    end
+end
+
+println("Enter the number of terms for Fibonacci series: ")
+num_terms = parse(Int, readline())
+
+if num_terms < 1
+    println("Number of terms should be greater than 0.")
+else
+    for i in 0:num_terms-1
+        println(fibonacci_recursive(i))
+    end
+end
