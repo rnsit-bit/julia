@@ -1,0 +1,45 @@
+6a)function count_letters(text::String)
+    letter_freq = Dict{Char, Int}()
+
+    for char in text
+        if isletter(char)
+            char = lowercase(char)
+            if haskey(letter_freq, char)
+                letter_freq[char] += 1
+            else
+                letter_freq[char] = 1
+            end
+        end
+    end
+
+    for (letter, frequency) in sort(collect(letter_freq))
+        println("$letter : $frequency")
+    end
+end
+
+line_of_text = "praveen." #here change the text
+count_letters(line_of_text)
+
+6b)function find_most_popular_artist(artists::Vector{String}, votes::Vector{Int})
+    vote_count = Dict{String, Int}()
+
+    for artist in artists
+        vote_count[artist] = 0
+    end
+
+    for vote in votes
+        artist = artists[vote]
+        vote_count[artist] += 1
+    end
+
+    max_votes = maximum(values(vote_count))
+    popular_artists = [artist for (artist, votes) in vote_count if votes == max_votes]
+
+    println("Most popular artist(s): ", popular_artists)
+end
+
+artists = ["Artist 1", "Artist 2", "Artist 3", "Artist 4", "Artist 5",
+           "Artist 6", "Artist 7", "Artist 8", "Artist 9", "Artist 10"]
+votes = [2, 3, 1, 2, 5, 3, 7, 8, 1, 3, 4, 4, 4, 5]  # Example votes
+
+find_most_popular_artist(artists, votes)
