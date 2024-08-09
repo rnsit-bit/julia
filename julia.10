@@ -1,0 +1,53 @@
+10a)using Plots
+
+x = -10:0.1:10
+y_solid = x .^ 2
+x_dotted = -10:1:10
+y_dotted = x_dotted .^ 2
+plot(x, y_solid, label="Solid", linewidth=2)
+
+plot!(x_dotted, y_dotted, label="Dotted", linestyle=:dot)
+
+xlabel!("x")
+ylabel!("y")
+
+title!("Plot of y = x^2")
+plot!()
+
+10b)using Plots
+
+x = -2 * π:0.01:2 * π
+
+y = sin.(x) + sin.(2 .* x)
+
+plot(x, y, label="y = sin(x) + sin(2x)")
+
+xlabel!("x")
+
+ylabel!("y")
+
+title!("Plot of y = sin(x) + sin(2x)")
+plot!()
+
+10c)using Plots
+
+f1(x) = sin(x) + sin(2 * x)
+f2(x) = sin(2 * x) + sin(3 * x)
+
+x = -2 * π:0.01:2 * π
+
+y1 = f1.(x)
+y2 = f2.(x)
+
+plot(x, y1, label="y = sin(x) + sin(2x)", lw=2)
+plot!(x, y2, label="y = sin(2x) + sin(3x)", lw=2)
+
+xlabel!("x")
+
+ylabel!("y")
+
+title!("Plot of y = sin(x) + sin(2x) and y = sin(2x) + sin(3x)")
+ 
+ 
+
+
