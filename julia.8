@@ -1,0 +1,51 @@
+8a)function evaluate_expression(expression::String)
+    return eval(Meta.parse(expression))
+end
+
+println("Enter the expression to evaluate:")
+expression = readline()
+
+result = evaluate_expression(expression)
+
+println("Result of the expression '$expression' is: ", result)
+
+8b)using LinearAlgebra
+
+function matrix_properties(matrix::AbstractMatrix)
+    properties = Dict{String, Any}()
+    properties["Determinant"] = det(matrix)
+    if properties["Determinant"] != 0
+        properties["Inverse"] = inv(matrix)
+    else
+        properties["Inverse"] = "Matrix is singular and not invertible"
+    end
+
+    properties["Rank"] = rank(matrix)
+    properties["Upper Triangular Matrix"] = UpperTriangular(matrix)
+    properties["Lower Triangular Matrix"] = LowerTriangular(matrix)
+    properties["Diagonal Elements"] = diag(matrix)
+    properties["Euclidean Norm"] = norm(matrix)
+
+    properties["Square Root of Matrix"] = sqrtm(matrix)
+
+    return properties
+end
+
+function get_matrix_input()
+    println("Enter the dimensions of the matrix (rows columns):")
+    dims = split(readline())
+    rows = parse(Int, dims[1])
+    cols = parse(Int, dims[2])
+
+    println("Enter the elements of the matrix row-wise:")
+    elements = [parse(Float64, x) for x in split(readline())]
+    return reshape(elements, rows, cols)
+end
+
+matrix = get_matrix_input()
+
+properties = matrix_properties(matrix)
+
+for (property, value) in properties
+    println("$property: $value")
+end
