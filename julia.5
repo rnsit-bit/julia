@@ -1,0 +1,39 @@
+5a)function is_palindrome(word)
+    word = lowercase(word)
+    
+    return word == reverse(word)
+end
+
+println("Enter a word to check if it's a palindrome: ")
+word = readline()
+
+if is_palindrome(word)
+    println("'$word' is a palindrome.")
+else
+    println("'$word' is not a palindrome.")
+end
+
+
+5b)function extract_words_from_file(filename)
+    words = String[]
+
+    file = open(filename, "r")
+
+    for line in eachline(file)
+        words_in_line = split(line, r"[^a-zA-Z]+")
+        
+        append!(words, words_in_line)
+    end
+
+    close(file)
+
+    return words
+end
+
+filename = "ppp" #here add ur file name
+words = extract_words_from_file(filename)
+
+println("Words present in the file:")
+for word in words
+    println(word)
+end
