@@ -1,0 +1,59 @@
+3a) function calculate_amount(P, r)
+    println("Year 1: ", P + P*r/100)
+    principal = P + P*r/100
+
+    for year in 2:10
+        principal = principal + principal*r/100
+        println("Year $year: ", principal)
+
+        if principal > 2*P
+            println("The amount exceeds 2P. Stopping further calculations.")
+            break
+        end
+    end
+end
+
+println("Enter the principal amount (P): ")
+P = parse(Float64, readline())
+
+println("Enter the interest rate (r) in percentage: ")
+r = parse(Float64, readline())
+
+calculate_amount(P, r)
+
+
+3b) function calculate_statistics(filename)
+    file = open(filename, "r")
+
+    largest = typemin(Float64)
+    smallest = typemax(Float64)
+    count = 0
+    total = 0.0
+
+    for line in eachline(file)
+        number = parse(Float64, line)
+
+        if number > largest
+            largest = number
+        end
+
+        if number < smallest
+            smallest = number
+        end
+
+        count += 1
+        total += number
+    end
+
+    close(file)
+
+    average = total / count
+
+    println("Largest number: ", largest)
+    println("Smallest number: ", smallest)
+    println("Count: ", count)
+    println("Sum: ", total)
+    println("Average: ", average)
+end
+
+calculate_statistics("MOINN")
