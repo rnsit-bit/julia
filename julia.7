@@ -1,0 +1,46 @@
+7a)function count_letters(text::String)
+    letter_count = Dict{Char, Int}()
+
+    for c in 'a':'z'
+        letter_count[c] = 0
+    end
+
+    for char in text
+        if isletter(char)  
+            char = lowercase(char)  
+            letter_count[char] += 1
+        end
+    end
+
+    return letter_count
+end
+
+text = "praveen ." #here change the sentence
+result = count_letters(text)
+
+for (letter, count) in result
+    println("$letter: $count")
+end
+
+7b)function fetch_words(filename::String)
+    words = Set{String}()
+
+    for line in eachline(filename)
+        for word in split(line, r"[^a-zA-Z]+")
+            word = lowercase(word)
+            if !isempty(word)
+                push!(words, word)
+            end
+        end
+    end
+
+    return words
+end
+
+filename = "ppp" #change file name here
+unique_words = fetch_words(filename)
+
+println("Unique words found in the file:")
+for word in unique_words
+    println(word)
+end
