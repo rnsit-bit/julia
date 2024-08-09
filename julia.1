@@ -1,0 +1,140 @@
+1a) function add(x, y)
+    return x + y
+end
+
+function subtract(x, y)
+    return x - y
+end
+
+function multiply(x, y)
+    return x * y
+end
+
+function divide(x, y)
+    if y != 0
+        return x / y
+    else
+        println("Error: Division by zero!")
+        return NaN
+    end
+end
+
+function calculator()
+    println("Welcome to the calculator simulation!")
+    println("Please select an operation:")
+    println("1. Addition (+)")
+    println("2. Subtraction (-)")
+    println("3. Multiplication (*)")
+    println("4. Division (/)")
+
+    operation = readline()
+
+    println("Enter first number:")
+    num1 = parse(Float64, readline())
+
+    println("Enter second number:")
+    num2 = parse(Float64, readline())
+
+    if operation == "+" || operation == "1"
+        result = add(num1, num2)
+        println("Result: $result")
+    elseif operation == "-" || operation == "2"
+        result = subtract(num1, num2)
+        println("Result: $result")
+    elseif operation == "*" || operation == "3"
+        result = multiply(num1, num2)
+        println("Result: $result")
+    elseif operation == "/" || operation == "4"
+        result = divide(num1, num2)
+        println("Result: $result")
+    else
+        println("Invalid operation selected!")
+    end
+end
+
+calculator()
+
+1b) function complex_add(z1::Complex, z2::Complex)
+    return z1 + z2
+end
+
+function complex_subtract(z1::Complex, z2::Complex)
+    return z1 - z2
+end
+
+function complex_multiply(z1::Complex, z2::Complex)
+    return z1 * z2
+end
+
+function complex_divide(z1::Complex, z2::Complex)
+    return z1 / z2
+end
+
+function complex_calculator()
+    println("Welcome to the complex number calculator!")
+    println("Please select an operation:")
+    println("1. Addition (+)")
+    println("2. Subtraction (-)")
+    println("3. Multiplication (*)")
+    println("4. Division (/)")
+
+    operation = readline()
+
+    println("Enter the real part of the first complex number:")
+    real1 = parse(Float64, readline())
+
+    println("Enter the imaginary part of the first complex number:")
+    imag1 = parse(Float64, readline())
+
+    println("Enter the real part of the second complex number:")
+    real2 = parse(Float64, readline())
+
+    println("Enter the imaginary part of the second complex number:")
+    imag2 = parse(Float64, readline())
+
+    z1 = Complex(real1, imag1)
+    z2 = Complex(real2, imag2)
+
+    if operation == "+" || operation == "1"
+        result = complex_add(z1, z2)
+        println("Result: $result")
+    elseif operation == "-" || operation == "2"
+        result = complex_subtract(z1, z2)
+        println("Result: $result")
+    elseif operation == "*" || operation == "3"
+        result = complex_multiply(z1, z2)
+        println("Result: $result")
+    elseif operation == "/" || operation == "4"
+        result = complex_divide(z1, z2)
+        println("Result: $result")
+    else
+        println("Invalid operation selected!")
+    end
+end
+
+complex_calculator()
+
+1c) function evaluate_expression(expr::String)
+    try
+        parsed_expr = Meta.parse(expr)
+        result = eval(parsed_expr)
+        return result
+    catch e
+        println("Error: $e")
+        return nothing
+    end
+end
+
+function main()
+    println("Welcome to the mixed data type expression evaluator!")
+    println("Please enter the expression to evaluate:")
+    expr = readline()
+    
+    result = evaluate_expression(expr)
+    if result !== nothing
+        println("Result: $result")
+    end
+end
+
+main()
+
