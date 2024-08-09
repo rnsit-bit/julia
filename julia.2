@@ -1,0 +1,59 @@
+2a) function calculate_repair_cost(hours_worked::Float64, parts_cost::Float64)
+    labor_rate = 100.0
+    minimum_charge = 150.0
+
+    labor_cost = hours_worked * labor_rate
+    total_cost = labor_cost + parts_cost
+
+    if total_cost < minimum_charge
+        total_cost = minimum_charge
+    end
+
+    return total_cost
+end
+
+function main()
+    println("Enter the number of hours worked:")
+    hours = parse(Float64, readline())
+
+    println("Enter the cost of parts used in the repair:")
+    parts_cost = parse(Float64, readline())
+
+    total_charge = calculate_repair_cost(hours, parts_cost)
+
+    println("The total charge for the job is \$$(total_charge)")
+end
+
+main()
+
+2b) function calculate_pay(hours_worked::Float64, hourly_rate::Float64)
+    regular_pay, overtime_pay = 0.0, 0.0
+
+    if hours_worked <= 40
+        regular_pay = hours_worked * hourly_rate
+    else
+        regular_pay = 40 * hourly_rate
+        overtime_hours = hours_worked - 40
+        overtime_pay = overtime_hours * hourly_rate * 1.5
+    end
+
+    gross_pay = regular_pay + overtime_pay
+
+    return regular_pay, overtime_pay, gross_pay
+end
+
+function main()
+    println("Enter the number of hours worked:")
+    hours = parse(Float64, readline())
+
+    println("Enter the hourly rate of pay:")
+    rate = parse(Float64, readline())
+
+    regular_pay, overtime_pay, gross_pay = calculate_pay(hours, rate)
+
+    println("Regular Pay: \$$(round(regular_pay, digits=2))")
+    println("Overtime Pay: \$$(round(overtime_pay, digits=2))")
+    println("Gross Pay: \$$(round(gross_pay, digits=2))")
+end
+
+main()
